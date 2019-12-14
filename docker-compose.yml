@@ -1,0 +1,17 @@
+version: '3.3' # specify docker-compose version
+
+# Define the services/containers to be run
+services:
+  enigma: # name of the first service
+    build: enigma-client # specify the directory of the Dockerfile
+#    volumes:
+#      - ./enigma-client/dist/enigma-client:/usr/share/nginx/html
+    ports:
+      - "4200:80" # specify port forewarding
+
+  enigma-server: #name of the second service
+    build: enigma-server # specify the directory of the Dockerfile
+#    volumes:
+#      - ./enigma-server/dist:/usr/share/nginx/html
+    ports:
+      - "3000:3000" #specify ports forewarding
