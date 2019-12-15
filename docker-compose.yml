@@ -1,17 +1,25 @@
-version: '3.3' # specify docker-compose version
+version: '3.3'
 
 # Define the services/containers to be run
 services:
-  enigma: # name of the first service
+  git:
+    command: git clone git@github.com:manucoffin/enigma-client.git && git clone git@github.com:manucoffin/enigma-server.git
+
+  enigma:
     build: enigma-client # specify the directory of the Dockerfile
 #    volumes:
 #      - ./enigma-client/dist/enigma-client:/usr/share/nginx/html
     ports:
       - "4200:80" # specify port forewarding
 
-  enigma-server: #name of the second service
+  enigma-server:
     build: enigma-server # specify the directory of the Dockerfile
 #    volumes:
 #      - ./enigma-server/dist:/usr/share/nginx/html
     ports:
       - "3000:3000" #specify ports forewarding
+
+  docs:
+    build: docs # specify the directory of the Dockerfile
+    ports:
+      - "80:80" #specify ports forewarding
