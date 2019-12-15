@@ -1,8 +1,67 @@
-<h1>Documentation</h1>
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
 
-<ul>
-    <li><a href="http://localhost:3000/api">Enigma Server REST API</a></li>
-    <li><a href="http://localhost/docs/enigma-server">Enigma Server WS API</a></li>
-    <li><a href="http://localhost/docs/enigma-client">Enigma Client WS API</a></li>
-</ul>
+        <title>Enigma Project Documentation</title>
+        <meta name="description" content="Enigma Project Documentation">
 
+        <script src="../node_modules/mermaid/dist/mermaid.min.js"></script>
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    </head>
+
+    <body>
+        <h1>Documentation</h1>
+
+        <ul>
+            <li><a href="http://localhost:3000/api">Enigma Server REST API</a></li>
+            <li><a href="http://localhost/docs/enigma-server">Enigma Server WS API</a></li>
+            <li><a href="http://localhost/docs/enigma-client">Enigma Client WS API</a></li>
+        </ul>
+
+        <div class="mermaid">
+            sequenceDiagram
+                participant A as AuthServer
+                participant C as Client
+                participant S as Server
+                Note over A: At startup, <br>generates a pair of <br>public/private key <br>and exposes the <br>public key on an <br>API endpoint
+                S->>A: Ask for ther public key
+                A-->>S: Send the public key
+                C->>A: Ask for JWT
+                Note over A: Generates a JWT <br> and sign it with <br> its private key
+                A-->>C: Send signed JWT
+                C-xS: Asks for the algorithm
+                C-xS: Asks for the validation slug
+                S--xC: Send algorithm
+                S--xC: Send validation slug
+                Note over C: Now ready to test <br>batches of keys
+                loop Every 2 seconds
+                    S->>C: Send batch of keys
+                    opt Ready to test
+                        C-->>S: Send batch/accepted
+                        Note over S: Mark the keys <br> of the accepted <br>batch as "Pending"
+                    end
+                end
+                Note over C: Try to decrypt the <br>message with each <br>key in the batch
+                alt No key valid
+                    C->>S: Send batch/rejected
+                    alt JWT valid
+                        Note over S: Mark all the keys <br>from the batch as <br>"Rejected"
+                    else JWT invalid
+                        Note over S: Mark all the keys <br>from the batch as <br>"Unknown"
+                    end
+                else Valid key found
+                    C->>S: Send batch/decrypted
+                    alt JWT invalid
+                        Note over S: Mark all the keys <br>from the batch as <br>"Unknown"
+                    else JWT valid
+                        Note over S: Mark the key as <br>"Valid" and all other <br>as "Rejected"
+                        S-->>C: Broadcast message/decrypted
+                        Note over C: Update UI to reflect <br>keys statuses
+                    end
+                end
+        </div>
+
+
+    </body>
+</html>

@@ -12,4 +12,4 @@ You should have docker and git installed on your machine.
 1. The app should be available at [http://localhost:4200](http://localhost:4200)
 
 ## Documentation
-The APIs specifications are available at [http://localhost/docs](http://localhost/docs)
+The APIs specifications and project documentation are available at [http://localhost/docs](http://localhost/docs)
