@@ -291,7 +291,7 @@
     
   </div>
   <p class="text-grey-dark text-sm">User has taken a batch to test.</p>
-  <div class="mt-4 mb-4 markdown"><p>Mark all the keys from the incoming batch as &quot;Pending&quot;, and broadcast the updated list of keys to users.</p>
+  <div class="mt-4 mb-4 markdown"><p>Send the list of keys that are going to be tested to the server.</p>
 </div>
   
 <div>
@@ -719,7 +719,7 @@ number
     
   </div>
   <p class="text-grey-dark text-sm">Batch has been tested and no key valid.</p>
-  <div class="mt-4 mb-4 markdown"><p>Mark all the keys from the batch as &quot;Rejected&quot;, and broadcast the updated list of keys to users.</p>
+  <div class="mt-4 mb-4 markdown"><p>Send the list of keys that were tested to the server.</p>
 </div>
   
 <div>
@@ -1147,7 +1147,7 @@ number
     
   </div>
   <p class="text-grey-dark text-sm">Batch has been tested and one key was valid.</p>
-  <div class="mt-4 mb-4 markdown"><p>Mark the valid key as &quot;Validated&quot; and all other keys as &quot;Rejected&quot;, and broadcast the updated list of keys to users.</p>
+  <div class="mt-4 mb-4 markdown"><p>Send the decrypted message and the valid key to the server.</p>
 </div>
   
 <div>
@@ -1620,7 +1620,7 @@ number
     
   </div>
   <p class="text-grey-dark text-sm">Reset the server.</p>
-  <div class="mt-4 mb-4 markdown"><p>Mark all the keys as &quot;Unkown&quot;, and broadcast the updated list of keys to users.</p>
+  <div class="mt-4 mb-4 markdown"><p>Asks the server to reset all keys statuses</p>
 </div>
   
 <div>
@@ -1771,7 +1771,7 @@ void
     
   </div>
   <p class="text-grey-dark text-sm">Message containing the decrypted message and the valid key.</p>
-  <div class="mt-4 mb-4 markdown"><p>Notify all users that the message has been decrypted, when a message of type &quot;batch/decrypted&quot; is received.</p>
+  <div class="mt-4 mb-4 markdown"><p>Logs that the message was decrypted.</p>
 </div>
   
 <div>
@@ -2247,7 +2247,7 @@ number
     
   </div>
   <p class="text-grey-dark text-sm">Message containing a batch of keys.</p>
-  <div class="mt-4 mb-4 markdown"><p>Every second, a batch of keys is broadcasted to users, they can accept it or ignore it.</p>
+  <div class="mt-4 mb-4 markdown"><p>User can take the batch to test or ignore it if not ready.</p>
 </div>
   
 <div>
@@ -2816,7 +2816,7 @@ number
     
   </div>
   <p class="text-grey-dark text-sm">Message containing all the keys.</p>
-  <div class="mt-4 mb-4 markdown"><p>Event used to broadcast the list of keys to users so they can keep an up to date list on the client side.</p>
+  <div class="mt-4 mb-4 markdown"><p>Display a list of keys and their statuses.</p>
 </div>
   
 <div>
