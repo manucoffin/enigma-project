@@ -1,4 +1,3 @@
 FROM alpine/git:latest
 
-RUN git clone git@github.com:manucoffin/enigma-client.git
-RUN git clone git@github.com:manucoffin/enigma-server.git
+CMD ["git", "clone", "git@github.com:manucoffin/enigma-client.git", "&&", "git", "clone", "git@github.com:manucoffin/enigma-server.git"]
