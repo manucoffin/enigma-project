@@ -13,11 +13,17 @@
     <body>
         <h1>Documentation</h1>
 
+        <h2>Technical documentation</h2>
+        <p>You can find the technical documentation of each part of the application here:</p>
+
         <ul>
             <li><a href="http://localhost:3000/api">Enigma Server REST API</a></li>
             <li><a href="http://localhost/docs/enigma-server">Enigma Server WS API</a></li>
             <li><a href="http://localhost/docs/enigma-client">Enigma Client WS API</a></li>
         </ul>
+
+        <h2>How the microservices work</h2>
+        <p>An image is worth a thousand words, so here is a sequence diagram of how the whole application is working:</p>
 
         <div class="mermaid">
             sequenceDiagram
@@ -62,6 +68,58 @@
                 end
         </div>
 
+        <p>And here is the detailed fonctioning of the authentication server:</p>
+        <img src="img/auth-server-sequence-diagram.png">
 
+        <h2>Technologies choices</h2>
+
+        <h3>Authentication server</h3>
+
+        <h4>Spring boot</h4>
+        <p>J’ai utilisé spring boot parce que c’est framework bien connu des développeurs java  pour les nombreuses fonctionnalités qu’il apporte sur les aspects web ,sécurité et batch..
+        <p>Je l’ai utilisé pour :</p>
+        <ul>
+            <li>Faciliter la configuration de mon projet et de réduire le temps alloué au démarrage de projet.</li>
+            <li>Parce qu’il se base sur plusieurs éléments :
+                <ul>
+                    <li>Un site web https://start.spring/io qui m a permet de générer rapidement la structure de mon projet en y incluant toutes les dépendances Maven nécessaires pour l’application.</li>
+                    <li>L’utilisation de « startes » pour gérer les dépendances , Spring a regroupé les dépendances Maven de spring dans des « méga dépendances » afin de faciliter la gestion de celle-ci. Par exemple pour ajouter toute les dépendances pour gérer la sécurité il suffit d’ajouter le starter « spring-boot-starter-security »</li>
+                </ul>
+            </li>
+        </ul>
+
+        <h4>Spring Security</h4>
+        <p>Framework de sécurité léger qui fournit une authentification et un support d’autorisation. <br> C’est un module incontournable d’une application developpé en spring, Il apporte tout le nécessaire pour sécuriser une application et il a l’avantage d’être vraiment personnalisable. Spring Security n’intervient que sur le domaine applicatif.</p>
+
+        <h4>Maven</h4>
+        <p>j’ai utilisé Maven qui est l’outil de construction de projet le plus célèbre est sans aucun doute <br>Les principales phases dans Maven sont :</p>
+        <ul>
+            <li>compile : compilation du code source du projet</li>
+            <li>test : compilation du code source des tests et exécution des tests</li>
+            <li>package : construction du livrable (pour une application Web, il s'agit de l'archive WAR)</li>
+        </ul>
+
+        <p>je l’ai utilisé principalement pour gérer automatiquement les dépendances logicielles. Pour développer des applications Java EE, nous allons avoir besoin de bibliothèques externes (les fichiers .jar en Java). Plutôt que d'aller les télécharger une à une depuis le Web et de les ajouter dans Eclipse, nous allons signaler à Maven l'identifiant des dépendances dont nous aurons besoin et il va se charger pour nous de les télécharger depuis un référentiel centralisé (Maven central repository), de les stocker dans un cache sur la machine et de les associer à notre projet.</p>
+
+        <h4>JavaDoc</h4>
+        <p>J’ai utilisé Javadoc comme  outil fourni par Sun avec le JDK pour permettre la génération d'une documentation technique à partir du code source.</p>
+
+        <h4>JWT</h4>
+        <p>pour la génération des tokens et l’identification des utilisateurs.</p>
+
+        <h3>Application server</h3>
+        <h4>NestJs</h4>
+        <p>Nous avons utilisé NestJs qui est un framework backend basé sur NodeJs. Ce framework est très orienté objet, et utilise une syntaxe très proche de celle d'angular, ce qui facilite le développement lorsque l'on doit passer du frontend au backend.</p>
+
+        <h4>Swagger</h4>
+        <p>Nous avons utilisé Swagger pour générer la documentation de l'API REST du serveur applicatif. Dans le code, il suffit de placer des "décorateurs" (en quelque sorte des extensions de classe), qui seront interpretés à la compilation pour générer une documentation technique au format HTML.</p>
+
+        <h4>AsyncAPI</h4>
+        <p>Il s'agit d'un outil pour décrire une documentation technique, en Yaml ou Json, pour potientiellement tout type d'API. Nous l'avons en l'occurence utilisé pour rédiger la documentation des échanges websockets entre le client et le serveur.</p>
+
+        <h3>Client application</h3>
+
+        <h4>Angular</h4>
+        <p>Nous avons utilisé Angular pour générer l'application frontend. Le framework permet de créer des interfaces et d'intéragir avec une API de manière simplifiée et structurée.</p>
     </body>
 </html>
